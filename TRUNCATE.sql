@@ -1,0 +1,22 @@
+TRUNCATE `accounts`;
+TRUNCATE `account_trans`;
+TRUNCATE `brands`;
+TRUNCATE `customer`;
+TRUNCATE `cus_sup_trans`;
+TRUNCATE `expenses`;
+TRUNCATE `expense_trans`;
+TRUNCATE `history`;
+TRUNCATE `orders`;
+TRUNCATE `orders_clients`;
+TRUNCATE `payments`;
+TRUNCATE `products`;
+TRUNCATE `products_translations`;
+TRUNCATE `product_trans`;
+TRUNCATE `purchase_orders`;
+TRUNCATE `shop_categories`;
+TRUNCATE `shop_categories_translations`;
+TRUNCATE `vendors`;
+TRUNCATE `vendors_orders`;
+TRUNCATE `wish_list`;
+
+DROP TABLE `accounts`, `account_trans`, `active_pages`, `bank_accounts`, `blog_posts`, `blog_translations`, `brands`, `confirm_links`, `cookie_law`, `cookie_law_translations`, `customer`, `cus_sup_trans`, `discount_codes`, `expenses`, `expense_trans`, `history`, `keys`, `languages`, `location`, `orders`, `orders_clients`, `payments`, `products`, `products_translations`, `product_trans`, `purchase_orders`, `seo_pages`, `seo_pages_translations`, `shop_categories`, `shop_categories_translations`, `subscribed`, `textual_pages_tanslations`, `users`, `value_store`, `vendors`, `vendors_orders`, `vendors_orders_clients`, `wish_list`;

@@ -1,0 +1,32 @@
+.quarantine
+.tmb
+.vscode
+.well-known
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+github
+system
+
+attachments
+cgi-bin
+old_repo
+
+!application/*/.htaccess
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/

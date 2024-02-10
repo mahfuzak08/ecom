@@ -1,0 +1,7 @@
+SELECT `p`.*, `pt`.`title`, `pt`.`description`, `pt`.`price`, `pt`.`buy_price`
+FROM `products` as `p`
+LEFT JOIN `products_translations` as `pt` ON `p`.`id` = `pt`.`for_id` AND `pt`.`abbr` = "en"
+WHERE `p`.`visibility` = 1
+AND `p`.`shop_id` = '22'
+AND (`p`.`id` = '3719' OR `p`.`barcode` = '3719')
+ LIMIT 1

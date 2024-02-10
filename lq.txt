@@ -1,0 +1,9 @@
+SELECT `vendors`.`name` as `vendor_name`, `vendors`.`id` as `vendor_id`, `products`.*, `products_translations`.`title`, `products_translations`.`description`, `products_translations`.`price`, `products_translations`.`buy_price`, `products_translations`.`old_price`, `products_translations`.`abbr`, `products`.`url`, `products_translations`.`for_id`, `products_translations`.`basic_description`
+FROM `products`
+LEFT JOIN `vendors` ON `vendors`.`id` = `products`.`vendor_id`
+LEFT JOIN `products_translations` ON `products_translations`.`for_id` = `products`.`id`
+WHERE (`products_translations`.`title` LIKE '%Bush%')
+AND `products_translations`.`abbr` = 'en'
+AND `products`.`shop_id` = '24'
+ORDER BY `products`.`id` DESC
+ LIMIT 20
