@@ -156,6 +156,7 @@
                                         <input type="checkbox" name="access[]" value="284" <?= (array_search("284", $access) === false)? '': 'checked'; ?>>Expense Transection Add<br>
                                         <input type="checkbox" name="access[]" value="285" <?= (array_search("285", $access) === false)? '': 'checked'; ?>>Expense Transection Edit<br>
                                         <input type="checkbox" name="access[]" value="286" <?= (array_search("286", $access) === false)? '': 'checked'; ?>>Expense Transection Delete<br>
+                                        <input type="checkbox" name="access[]" value="287" <?= (array_search("287", $access) === false)? '': 'checked'; ?>>SMS<br>
                                         <input type="checkbox" name="access[]" value="290" <?= (array_search("290", $access) === false)? '': 'checked'; ?>>Subscribed Emails<br>
                                         <input type="checkbox" name="access[]" value="295" <?= (array_search("295", $access) === false)? '': 'checked'; ?>>Templates<br>
                                         <input type="checkbox" name="access[]" value="300" <?= (array_search("300", $access) === false)? '': 'checked'; ?>>Users<br>

@@ -312,6 +312,8 @@ $route['admin/expenses/add_trans'] = "admin/expense/manage/add_trans";
 $route['admin/expenses/edit/(:num)'] = "admin/expense/manage/edit/$1";
 $route['admin/expenses/delete/(:num)'] = "admin/expense/manage/delete/$1";
 $route['admin/expenses/print_bill/(:num)'] = "admin/expense/manage/print_bill/$1";
+// SMS GROUP
+$route['admin/sms'] = "admin/sms/manage";
 // REPORT GROUP
 $route['admin/reports'] = "admin/reports/manage";
 $route['admin/reports/search'] = "admin/reports/manage/search";

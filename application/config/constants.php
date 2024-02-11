@@ -144,6 +144,7 @@ define("EXPENSE_DELETE", "283");
 define("EXPENSE_TRANS_ADD", "284");
 define("EXPENSE_TRANS_EDIT", "285");
 define("EXPENSE_TRANS_DELETE", "286");
+define("SMS", "287");
 define("SUBSCRIBED_EMAILS", "290");
 define("TEMPLATES", "295");
 define("ADMIN_USERS", "300");

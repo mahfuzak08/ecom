@@ -2,8 +2,7 @@ SELECT `vendors`.`name` as `vendor_name`, `vendors`.`id` as `vendor_id`, `produc
 FROM `products`
 LEFT JOIN `vendors` ON `vendors`.`id` = `products`.`vendor_id`
 LEFT JOIN `products_translations` ON `products_translations`.`for_id` = `products`.`id`
-WHERE (`products_translations`.`title` LIKE '%Bush%')
-AND `products_translations`.`abbr` = 'en'
-AND `products`.`shop_id` = '24'
-ORDER BY `products`.`id` DESC
+WHERE `products_translations`.`abbr` = 'en'
+AND `products`.`shop_id` = '19'
+ORDER BY `products`.`position` ASC
  LIMIT 20
