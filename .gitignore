@@ -2,12 +2,15 @@
 .tmb
 .vscode
 .well-known
+.htaccess
+
 application/cache/*
 !application/cache/index.html
 
 application/logs/*
 !application/logs/index.html
 
+application/config/database.php
 github
 system
 
