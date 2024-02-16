@@ -96,7 +96,7 @@ class Sales_model extends CI_Model
         $this->db->limit(1);
 
 		$query = $this->db->get();
-        file_put_contents("test.txt", $this->db->last_query());
+        // file_put_contents("test.txt", $this->db->last_query());
 		if($query->num_rows() == 1)
 		{
 			return $query->row();

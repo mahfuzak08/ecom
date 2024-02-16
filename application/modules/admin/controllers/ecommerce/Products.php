@@ -77,7 +77,7 @@ class Products extends ADMIN_Controller
         $data['products_lang'] = $products_lang = $this->session->userdata('admin_lang_products');
         $rowscount = $this->Products_model->productsCount($search_title, $category);
         $data['products'] = $this->Products_model->getproducts($this->num_rows, $page, $search_title, $orderby, $category, $vendor, $reorder_level);
-        file_put_contents("lq.txt", $this->db->last_query());
+        // file_put_contents("lq.txt", $this->db->last_query());
         $data['links_pagination'] = pagination('admin/products', $rowscount, $this->num_rows, 3);
         $data['num_shop_art'] = $this->Products_model->numShopproducts();
         $data['languages'] = $this->Languages_model->getLanguages();

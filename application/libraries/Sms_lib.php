@@ -15,46 +15,52 @@ class Sms_lib
   	public function __construct()
 	{
 		$this->CI =& get_instance();
+        $this->CI->load->library('session');
+        $this->CI->load->database();
 	}
 
-	// public function toSms($mobile, $body)
-    // {
-    //     $url = config('services.bangladeshsms.domain');
-    //     $apiKey = config('services.bangladeshsms.api_key');
-    //     $senderId = config('services.bangladeshsms.senderid');
+	public function toSms($mobile, $body)
+    {
+        $url = $this->CI->Home_admin_model->getValueStore('smsURL');
+        $apiKey = $this->CI->Home_admin_model->getValueStore('smsApi');
+        $senderId = $this->CI->Home_admin_model->getValueStore('smsSenderId');
 
-    //     $data = [
-    //         "url"=>$url,
-    //         "user_id"=>Auth::id(),
-    //         "api_key" => $apiKey,
-    //         "type" => "text",
-    //         "contacts" => $mobile,
-    //         "senderid" => $senderId,
-    //         "label" => 'transactional',
-    //         "msg" => $body
-    //     ];
+        $data = [
+            "url"=>$url,
+            "user_id"=>$_SESSION['logged_user_id'],
+            "api_key" => $apiKey,
+            "type" => "text",
+            "contacts" => $mobile,
+            "senderid" => $senderId,
+            "label" => 'transactional',
+            "msg" => $body
+        ];
 
-    //     try{
-    //         $smslog = new Sms_log();
-    //         $smslog->fill($data)->save();
+        try{
+            if (!$this->CI->db->insert('sms_logs', $data)) {
+                print_r($this->CI->db->error());
+            }
+            $smslogid = $this->CI->db->insert_id();
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
             
-    //         $ch = curl_init();
-    //         curl_setopt($ch, CURLOPT_URL, $url);
-    //         curl_setopt($ch, CURLOPT_POST, 1);
-    //         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    //         $response = curl_exec($ch);
-    //         curl_close($ch);
+            $update = ["response"=>$response];
             
-    //         $update = ["response"=>$response];
-    //         // dd($update);
-    //         $smslog->update($update);
+            if (!$this->CI->db->where('id', $smslogid)->update('sms_logs', $update)) {
+                print_r($this->CI->db->error());
+            }
 
-    //     }catch(\Exception $e) {
-    //         flash()->addError($e);
-    //     }
-    // }
+        }catch(\Exception $e) {
+            flash()->addError($e);
+        }
+    }
     
     public function getBalance()
     {

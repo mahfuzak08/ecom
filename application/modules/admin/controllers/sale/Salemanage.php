@@ -444,11 +444,16 @@ class Salemanage extends ADMIN_Controller
         $data['products_lang'] = $products_lang = $this->session->userdata('admin_lang_products');
         $data['order'] = $this->Sales_model->getOrder($order_id);
         $data['customer_info'] = $this->Sales_model->get_customer_info($data['order']['customer_id']);
-        $data['barcode'] = $this->set_barcode($data['order']['order_id']);
-        $data['nf'] = 2;
-        // $this->load->view('_parts/header', $head);
-        $this->load->view('sale/invoice_pos', $data);
-        // $this->load->view('_parts/footer');
+        if(isset($_GET['sms']) && $_GET['sms'] === 'yes' && !empty($data['customer_info']->phone)){
+            $companyName = $this->Home_admin_model->getValueStore('companyName');
+            $name = !empty($data['customer_info']->name) ? $data['customer_info']->name : 'Sir';
+            $this->sms_lib->toSms($data['customer_info']->phone, 'Hello '.$name.'! Your recent purchase has been successfully processed. Invoice No: '.$data['order']['order_id'].'. Total Amount: BDT '.$data['order']['total'].'. Thank you for choosing our services! - '.$companyName);
+            redirect('admin/sale/print_inv/'.$order_id);
+        }else{
+            $data['barcode'] = $this->set_barcode($data['order']['order_id']);
+            $data['nf'] = 2;
+            $this->load->view('sale/invoice_pos', $data);
+        }
     }
     
     public function return_item($order_id)

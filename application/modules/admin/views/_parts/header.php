@@ -190,7 +190,7 @@
                                             <li><a href="<?= base_url('admin/expenses') ?>" <?= urldecode(uri_string()) == 'admin/expenses' ? 'class="active"' : '' ?>><i class="fa fa-scissors" aria-hidden="true"></i> Expenses</a></li>
                                             <?php } ?>
                                             <?php if(strpos($access[0]['access'], SMS)>-1) { ?>
-                                            <li><a href="<?= base_url('admin/sms') ?>" <?= urldecode(uri_string()) == 'admin/sms' ? 'class="active"' : '' ?>><i class="fa fa-scissors" aria-hidden="true"></i> SMS</a></li>
+                                            <li><a href="<?= base_url('admin/sms') ?>" <?= urldecode(uri_string()) == 'admin/sms' ? 'class="active"' : '' ?>><i class="fa fa-envelope-o" aria-hidden="true"></i> SMS</a></li>
                                             <?php } ?>
                                             <?php if (in_array('blog', $activePages)) { ?>
                                                 <li><a href="<?= base_url('admin/blogpublish') ?>" <?= urldecode(uri_string()) == 'admin/blogpublish' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Publish post</a></li>

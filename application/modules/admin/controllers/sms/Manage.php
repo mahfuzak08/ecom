@@ -28,26 +28,29 @@ class Manage extends ADMIN_Controller
         $head['description'] = 'SMS';
         $head['keywords'] = '';
 
-        // $data['expenses'] = $this->Expense_model->getExpenses($id);
-        // $data['languages'] = $this->Languages_model->getLanguages();
-        
-        // if(empty($_GET['page'])){
-        //     $data['bal'] = $_SESSION['logged_user'] = $this->sms_lib->getBalance();
-        // }
-        // else{
-            $data['bal'] = $_SESSION['logged_user'];
-        // }
+        if(isset($_POST["sendsms"])){
+            $this->sms_lib->toSms($_POST['number'], $_POST['msg']);
+        }
 
-        if(isset($_POST["add_expense"])){
-            $result = $this->Expense_model->setExpense($_POST);
-            $this->saveHistory('Add an expense '. $result);
-            redirect('admin/expenses');
+        $data['expenses'] = $this->Expense_model->getExpenses($id);
+        $data['languages'] = $this->Languages_model->getLanguages();
+        
+        if(empty($_GET['page']) || isset($_POST["sendsms"])){
+            $data['bal'] = $_SESSION['logged_user'] = $this->sms_lib->getBalance();
         }
         else{
-            $this->saveHistory('Go to SMS Lists');
-            $this->load->view('_parts/header', $head);
-            $this->load->view('sms/lists', $data);
-            $this->load->view('_parts/footer');
+            $data['bal'] = $_SESSION['logged_user'];
         }
+        $page = isset($_GET['page']) && $_GET['page'] > 0 ? $_GET['page']-1 : 0;
+        $page *= 10;
+        $data['smss'] = $this->db->limit(10, $page)->order_by('id', 'desc') ->get('sms_logs')->result();
+        $data['total_sms'] = $this->db->count_all_results('sms_logs', FALSE);
+
+        
+    
+        $this->saveHistory('Go to SMS Lists');
+        $this->load->view('_parts/header', $head);
+        $this->load->view('sms/lists', $data);
+        $this->load->view('_parts/footer');
     }
 }
