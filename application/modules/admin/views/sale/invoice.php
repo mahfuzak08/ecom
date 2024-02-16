@@ -769,7 +769,9 @@
 			<?php } ?>
 			<!-- <button class="btn btn-success btn-block btn-flat" onclick="printDiv('invoice')">Print 3 Copy's Invoice</button><br> -->
             <a class="btn btn-primary btn-block btn-flat" href="<?= site_url("admin/sale"); ?>">Go to Sale Register</a><br>
+            <?php if(strpos($access[0]['access'], SMS)>-1) { ?>
             <a href="<?= site_url("admin/sale/print_order/".$order['id']."?sms=yes"); ?>" class="btn btn-info btn-block btn-flat">Send SMS Invoice</a><br>
+            <?php } ?>
             <!-- <button class="btn btn-primary btn-block btn-flat">Email Invoice</button><br> -->
             <?php if(strpos($access[0]['access'], SALES_INV_SETUP)>-1) { ?>
             <button class="btn btn-default btn-block btn-flat" onclick="toggle_div('#inv_settings')">Invoice Settings</button><br>
