@@ -440,20 +440,20 @@ class Salemanage extends ADMIN_Controller
         $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
         $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
         $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
+        $data['smsApi'] = $this->Home_admin_model->getValueStore('smsApi');
 
         $data['products_lang'] = $products_lang = $this->session->userdata('admin_lang_products');
         $data['order'] = $this->Sales_model->getOrder($order_id);
         $data['customer_info'] = $this->Sales_model->get_customer_info($data['order']['customer_id']);
-        if(isset($_GET['sms']) && $_GET['sms'] === 'yes' && !empty($data['customer_info']->phone)){
+        // print_r($data);
+        if(!empty($data['smsApi']) && !empty($data['customer_info']->phone)){
             $companyName = $this->Home_admin_model->getValueStore('companyName');
             $name = !empty($data['customer_info']->name) ? $data['customer_info']->name : 'Sir';
-            $this->sms_lib->toSms($data['customer_info']->phone, 'Hello '.$name.'! Your recent purchase has been successfully processed. Invoice No: '.$data['order']['order_id'].'. Total Amount: BDT '.$data['order']['total'].'. Thank you for choosing our services! - '.$companyName);
-            redirect('admin/sale/print_inv/'.$order_id);
-        }else{
-            $data['barcode'] = $this->set_barcode($data['order']['order_id']);
-            $data['nf'] = 2;
-            $this->load->view('sale/invoice_pos', $data);
+            $this->sms_lib->toSms($data['customer_info']->phone, 'Dear '.$name.'! Your recent purchase has been successfully processed. Invoice No: '.$data['order']['order_id'].'. Total Amount: BDT '.$data['order']['total'].'. Thank you for choosing our services! - '.$companyName);
         }
+        $data['barcode'] = $this->set_barcode($data['order']['order_id']);
+        $data['nf'] = 2;
+        $this->load->view('sale/invoice_pos', $data);
     }
     
     public function return_item($order_id)
