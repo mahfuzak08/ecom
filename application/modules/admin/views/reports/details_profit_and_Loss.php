@@ -99,8 +99,10 @@ function isSerialized($value) {
 										}
 									}
 								// 	if($buy_amt < $details['purchaseTotal']) $buy_amt = $details['purchaseTotal'];
-									$sales_revenue = $sale_amt - $buy_amt;
+                                    $sales_revenue = $sale_amt - $buy_amt;
 									echo number_format($sale_amt, 2, '.', ',');
+                                    echo "<hr>";
+                                    print_r($details['salesDiscount']);
 								?></td>
                             </tr>
                             <tr style="border-bottom: 1px solid #CCC;">

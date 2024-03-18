@@ -383,4 +383,13 @@ class Report_model extends CI_Model
         return $this->db->get("account_trans")->result_array();
     }
     
+    public function getSalesDiscount($post)
+    {
+        $this->db->select("SUM(orders.discount_code) as discount");
+        $this->db->where("orders.date >=", $post["start_date"]);
+        $this->db->where("orders.date <=", $post["end_date"]);
+        $this->db->where('orders.shop_id', SHOP_ID);
+        return $this->db->get("orders")->result_array();
+    }
+    
 }

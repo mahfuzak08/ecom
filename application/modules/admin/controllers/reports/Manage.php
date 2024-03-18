@@ -117,6 +117,7 @@ class Manage extends ADMIN_Controller
                 $data['details']['salesTotal'] = $getSalesTotal["sales_result"];
                 $data['details']['salesTotal_buyinfo'] = $getSalesTotal["p_buy_prices"];
                 $data['details']['accountsReceivable'] = $this->Report_model->getAccountsReceivable($_POST);
+                $data['details']['salesDiscount'] = $this->Report_model->getSalesDiscount($_POST);
                 $data['details']['purchaseTotal'] = $this->Report_model->getPurchaseTotal($_POST);
                 $data['details']['stocks'] = $this->Report_model->getStocks($_POST);
                 $data['details']['accountsPayable'] = $this->Report_model->getAccountsPayable($_POST);
