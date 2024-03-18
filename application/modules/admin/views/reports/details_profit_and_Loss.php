@@ -101,8 +101,16 @@ function isSerialized($value) {
 								// 	if($buy_amt < $details['purchaseTotal']) $buy_amt = $details['purchaseTotal'];
                                     $sales_revenue = $sale_amt - $buy_amt;
 									echo number_format($sale_amt, 2, '.', ',');
-                                    echo "<hr>";
-                                    print_r($details['salesDiscount']);
+								?></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #CCC;">
+                                <td style="padding-left: 10px;">Sales Discount</td>
+                                <td></td>
+                                <td style="text-align: right; padding-right: 10px;"><?php 
+									echo $details['salesDiscount'][0]['discount'];
+                                    if($details['salesDiscount'][0]['discount'] > 0){
+                                        $sales_revenue -= $details['salesDiscount'][0]['discount'];
+                                    }
 								?></td>
                             </tr>
                             <tr style="border-bottom: 1px solid #CCC;">
@@ -143,7 +151,7 @@ function isSerialized($value) {
                                 <td style="text-align: right; padding-right: 10px;"><?php echo number_format($details['accountsPayable'], 2, '.', ','); ?></td>
                             </tr>
                             <tr style="border-bottom: 1px solid #CCC;">
-                                <td style="padding-left: 10px;">Sales Revenues (Sales - Purchase)</td>
+                                <td style="padding-left: 10px;">Sales Revenues (Sales - Discount - Purchase)</td>
                                 <td></td>
                                 <td style="text-align: right; padding-right: 10px;"><?php echo number_format($sales_revenue, 2, '.', ','); ?></td>
                             </tr>
