@@ -62,8 +62,6 @@ function isSerialized($value) {
                                     <?php } ?>
                                 <?php } ?>
                             <?php }  ?>
-                            <?php elseif($product_id>0){ ?>
-                            <?php }  ?>
                             <?php else{ ?>
                                 <?php foreach($getAllCategory as $row){?>
                                     <p><?= $row['name']; ?></p>
