@@ -288,35 +288,48 @@ class Report_model extends CI_Model
 
     public function getSalesRevenues($post)
     {
-        $this->db->select('products.shop_categorie, products_translations.*');
-        $this->db->join('products_translations', 'products.id = products_translations.for_id');
-        if($post["category_id"]>0)
-            $this->db->where("products.shop_categorie", $post["category_id"]);
-        elseif($post["product_id"]>0)
-            $this->db->where("products.id", $post["product_id"]);
-        $this->db->where('products_translations.abbr', MY_DEFAULT_LANGUAGE_ABBR);
-        $this->db->where('products.shop_id', SHOP_ID);
-        $result['products'] = $this->db->get('products')->result_array();
+        // $this->db->select('products.shop_categorie, products_translations.*');
+        // $this->db->join('products_translations', 'products.id = products_translations.for_id');
+        // if($post["category_id"]>0)
+        //     $this->db->where("products.shop_categorie", $post["category_id"]);
+        // elseif($post["product_id"]>0)
+        //     $this->db->where("products.id", $post["product_id"]);
+        // $this->db->where('products_translations.abbr', MY_DEFAULT_LANGUAGE_ABBR);
+        // $this->db->where('products.shop_id', SHOP_ID);
+        // $result['products'] = $this->db->get('products')->result_array();
 
         $this->db->where("orders.date >=", $post["start_date"]);
         $this->db->where("orders.date <=", $post["end_date"]);
         $this->db->where("orders.order_type", "sale");
         $this->db->where("orders.processed", 1);
         $this->db->where('shop_id', SHOP_ID);
-        // $this->db->select('*, SUM(total) as total');
         $result = array();
         $result['sales_result'] = $this->db->get("orders")->result_array();
+        
+        
+        
         $result['p_buy_prices'] = array();
         $pids = array();
+        $catids = array();
         for($i=0; $i<count($result['sales_result']); $i++){
 			foreach(unserialize($result['sales_result'][$i]['products']) as $line=>$item) {
-			    if(array_search($item['product_info']['id'], $pids) === false)
-			        $pids[] = $item['product_info']['id'];
+			    if(array_search($item['product_info']['id'], $pids) === false){
+                    if($post["category_id"]>0 && $item['product_info']['shop_categorie'] == $post["category_id"])
+			            $pids[] = $item['product_info']['id'];
+                    elseif($post["product_id"]>0 && $item['product_info']['id'] == $post["product_id"])
+			            $pids[] = $item['product_info']['id'];
+                    else{
+                        $pids[] = $item['product_info']['id'];
+                        if(array_search($item['product_info']['shop_categorie'], $catids) === false)
+                            $catids[] = $item['product_info']['shop_categorie'];
+                    }
+                }
 			}
 		}
         // SELECT products_translations.buy_price, products_translations.for_id as pid FROM products_translations WHERE products_translations.for_id IN (4008, 4024, 4320)
         if(count($pids)>0){
-            $this->db->select("buy_price, for_id as pid");
+            $this->db->where('abbr', MY_DEFAULT_LANGUAGE_ABBR);
+            $this->db->where('shop_id', SHOP_ID);
             $this->db->where_in("for_id", $pids);
             $result['p_buy_prices'] = $this->db->get('products_translations')->result_array();
         }
