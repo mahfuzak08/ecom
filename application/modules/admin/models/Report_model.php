@@ -329,7 +329,6 @@ class Report_model extends CI_Model
         // SELECT products_translations.buy_price, products_translations.for_id as pid FROM products_translations WHERE products_translations.for_id IN (4008, 4024, 4320)
         if(count($pids)>0){
             $this->db->where('abbr', MY_DEFAULT_LANGUAGE_ABBR);
-            $this->db->where('shop_id', SHOP_ID);
             $this->db->where_in("for_id", $pids);
             $result['p_buy_prices'] = $this->db->get('products_translations')->result_array();
         }
