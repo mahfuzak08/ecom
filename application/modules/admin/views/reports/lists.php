@@ -24,7 +24,7 @@
             <ul class="report-menu">
                 <li class="selected">Inventory</li>
                 <li>Sales</li>
-                <li>Sales Revenues</li>
+                <li>Sales Revenue</li>
                 <li>Customer</li>
                 <li>Accounts</li>
                 <li>Purchase</li>
@@ -234,7 +234,7 @@
             else if(report_name == "Profit and Loss"){
                 $(".start_date, .end_date").show();
             }
-            else if(report_name == "Sales Revenues"){
+            else if(report_name == "Sales Revenue"){
                 $(".start_date, .end_date").show();
                 $(".products").show();
                 $(".category").show();

@@ -131,7 +131,7 @@ class Manage extends ADMIN_Controller
                 // $data['details']['accountsPayable'] = $this->Report_model->getAccountsPayable($_POST);
                 // $data['details']['expenseSum'] = $this->Report_model->getExpenseSum($_POST);
             }
-            elseif($_POST["report-name"] == 'Sales Revenues'){
+            elseif($_POST["report-name"] == 'Sales Revenue'){
                 $_POST["start_date"] = empty($_POST["start_date"]) ? date('Y-m-d') : $_POST["start_date"];
                 $_POST["end_date"] = empty($_POST["end_date"]) ? date('Y-m-d') : $_POST["end_date"];
                 $head['description'] = $_POST["report-name"];
