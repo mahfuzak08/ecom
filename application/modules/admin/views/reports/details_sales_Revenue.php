@@ -55,18 +55,14 @@ function isSerialized($value) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if($category_id>0){ ?>
-                                <?php foreach($getAllCategory as $row){?>
-                                    <?php if($row['id'] == $category_id) { ?>
+                            <?php if($category_id>0){
+                                foreach($getAllCategory as $row){
+                                    if($row['id'] == $category_id) { ?>
                                         <p><?= $row['name']; ?></p>
-                                    <?php } ?>
-                                <?php } ?>
-                            <?php }  ?>
-                            <?php else{ ?>
-                                <?php foreach($getAllCategory as $row){?>
-                                    <p><?= $row['name']; ?></p>
-                                <?php } ?>
-                            <?php }  ?>
+                                    <?php }
+                                }
+                            }  ?>
+                            
                         </tbody>
                     </table>
                 </div>
