@@ -14,7 +14,7 @@ class Manage extends ADMIN_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Report_model', 'Languages_model', 'Accounts_model'));
+        $this->load->model(array('Report_model', 'Languages_model', 'Accounts_model', 'Categories_model'));
     }
 
     public function index()
@@ -27,6 +27,7 @@ class Manage extends ADMIN_Controller
         $head['keywords'] = '';
 
         $data['getAllProducts'] = $this->Report_model->getAllProducts();
+        $data['getAllCategory'] = $this->Categories_model->getShopCategories2();
         $data['getAllVendors'] = $this->Report_model->getAllVendors();
         $data['getAllcustomers'] = $this->Report_model->getAllcustomers();
         $data['getAllexpenses'] = $this->Report_model->getAllexpenses();
@@ -59,7 +60,7 @@ class Manage extends ADMIN_Controller
 					$head['report_info'] = 'As of '. $_POST["end_date"];
 				}
 				// echo $_POST["start_date"];
-                $data['show_running_balance'] = $_POST["product_id"] > 0 ? true : $_POST["stock_type"] > 0 ? true : false;
+                $data['show_running_balance'] = $_POST["product_id"] > 0 ? true : ( $_POST["stock_type"] > 0 ? true : false);
                 $data['stock_type'] = $_POST["stock_type"];
                 $data['details'] = $this->Report_model->getInventoryDetails($_POST);
             }
@@ -129,6 +130,9 @@ class Manage extends ADMIN_Controller
                 // $data['details']['stocks'] = $this->Report_model->getStocks($_POST);
                 // $data['details']['accountsPayable'] = $this->Report_model->getAccountsPayable($_POST);
                 // $data['details']['expenseSum'] = $this->Report_model->getExpenseSum($_POST);
+            }
+            elseif($_POST["report-name"] == 'Sales Revenues'){
+                print_r($_POST);
             }
             // elseif($_POST["report-name"] == 'Trial Balance'){
                 // $head['description'] = $_POST["report-name"];

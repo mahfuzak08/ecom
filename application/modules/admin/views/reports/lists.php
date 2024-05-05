@@ -24,6 +24,7 @@
             <ul class="report-menu">
                 <li class="selected">Inventory</li>
                 <li>Sales</li>
+                <li>Sales Revenues</li>
                 <li>Customer</li>
                 <li>Accounts</li>
                 <li>Purchase</li>
@@ -58,6 +59,17 @@
                                     <option value="0">All</option>
                                     <?php foreach($getAllProducts as $row){?>
                                         <option value="<?= $row->id; ?>"><?= $row->title; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 category critarea" style="display: none;">
+                            <div class="form-group">
+                                <label>Select Product Category</label>
+                                <select id="category-list" name="category_id" class="form-control">
+                                    <option value="0">All</option>
+                                    <?php foreach($getAllCategory as $row){?>
+                                        <option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -221,6 +233,11 @@
             // }
             else if(report_name == "Profit and Loss"){
                 $(".start_date, .end_date").show();
+            }
+            else if(report_name == "Sales Revenues"){
+                $(".start_date, .end_date").show();
+                $(".products").show();
+                $(".category").show();
             }
         });
     </script>
