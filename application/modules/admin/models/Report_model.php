@@ -310,7 +310,7 @@ class Report_model extends CI_Model
         
         $result['p_buy_prices'] = array();
         $pids = array();
-        $catids = array();
+        $result['catids'] = array();
         for($i=0; $i<count($result['sales_result']); $i++){
 			foreach(unserialize($result['sales_result'][$i]['products']) as $line=>$item) {
 			    if(array_search($item['product_info']['id'], $pids) === false){
@@ -320,8 +320,8 @@ class Report_model extends CI_Model
 			            $pids[] = $item['product_info']['id'];
                     else{
                         $pids[] = $item['product_info']['id'];
-                        if(array_search($item['product_info']['shop_categorie'], $catids) === false)
-                            $catids[] = $item['product_info']['shop_categorie'];
+                        if(array_search($item['product_info']['shop_categorie'], $result['catids']) === false)
+                            $result['catids'][] = $item['product_info']['shop_categorie'];
                     }
                 }
 			}

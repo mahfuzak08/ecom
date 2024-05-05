@@ -137,6 +137,9 @@ class Manage extends ADMIN_Controller
                 $head['description'] = $_POST["report-name"];
 				$data["start_date"] = $_POST["start_date"];
 				$data["end_date"] = $_POST["end_date"];
+				$data["category_id"] = $_POST["category_id"];
+				$data["product_id"] = $_POST["product_id"];
+                $data['getAllCategory'] = $this->Categories_model->getShopCategories2();
                 $data['details'] = $this->Report_model->getSalesRevenues($_POST);
             }
             // elseif($_POST["report-name"] == 'Trial Balance'){
