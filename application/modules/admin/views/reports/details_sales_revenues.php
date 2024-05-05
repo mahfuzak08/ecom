@@ -45,7 +45,7 @@ function isSerialized($value) {
 							<td style="vertical-align: top;padding:5px 10px;text-align:center; font-size: 20px;">Report from <?= $report_info; ?></td>
 						</tr>
 					</table>
-                    <?php print_r($details);
+                    <?php print_r($details); ?>
                     <!-- <table style="border: 1px solid #CCC; width: 100%; border-collapse: collapse; line-height: 30px;" class="table table-bordered">
                         <thead>
                             <tr style="background-color: #CCC;">
