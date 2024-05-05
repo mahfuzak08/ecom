@@ -45,7 +45,7 @@ function isSerialized($value) {
 							<td style="vertical-align: top;padding:5px 10px;text-align:center; font-size: 20px;">Report from <?= $report_info; ?></td>
 						</tr>
 					</table>
-                    <?php // print_r($details); ?>
+                    
                     <table style="border: 1px solid #CCC; width: 100%; border-collapse: collapse; line-height: 30px;" class="table table-bordered">
                         <thead>
                             <tr style="background-color: #CCC;">
@@ -55,20 +55,7 @@ function isSerialized($value) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if($category_id>0){ ?>
-                                <?php foreach($getAllCategory as $row){?>
-                                    <?php if($row['id'] == $category_id) { ?>
-                                        <p><?= $row['name']; ?></p>
-                                    <?php } ?>
-                                <?php } ?>
-                            <?php }  ?>
-                            <?php elseif($product_id>0){ ?>
-                            <?php }  ?>
-                            <?php else{ ?>
-                                <?php foreach($getAllCategory as $row){?>
-                                    <p><?= $row['name']; ?></p>
-                                <?php } ?>
-                            <?php }  ?>
+                            
                         </tbody>
                     </table>
                 </div>
