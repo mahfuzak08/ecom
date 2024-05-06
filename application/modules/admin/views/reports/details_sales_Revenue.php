@@ -42,7 +42,7 @@ function isSerialized($value) {
 							</td>
 						</tr>
 						<tr>
-							<td style="vertical-align: top;padding:5px 10px;text-align:center; font-size: 20px;">Report from <?= $report_info; ?></td>
+							<td style="vertical-align: top;padding:5px 10px;text-align:center; font-size: 20px;">Sales Revenue Report<br> <?= $report_info; ?></td>
 						</tr>
 					</table>
                     <?php // print_r($details); ?>
@@ -62,23 +62,75 @@ function isSerialized($value) {
                                     if($row['id'] == $category_id) { ?>
                                         <tr>
                                             <td><?= $row['name']; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td style="text-align: right; padding-right: 10px;">
+                                                <?php 
+                                                $sale_amt = 0;
+                                                $buy_amt = 0;
+                                                $qty = 0;
+                                                for($i=0; $i<count($details['sales_result']); $i++){
+                                                    // $sale_amt += $details['sales_result'][$i]['total'];
+                                                    foreach(unserialize($details['sales_result'][$i]['products']) as $line=>$item) {
+                                                        if($item['product_info']['shop_categorie'] == $row['id']){
+                                                            $qty+= $item['product_info']['quantity'];
+                                                            $sale_amt += (float) $item['product_info']['price'] * (float) $item['product_info']['quantity'];
+                                                            if((float) $item['product_info']['cost_price'] > 0)
+                                                                $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
+                                                            else{
+                                                                for($ii = 0; $ii<count($details['p_buy_prices']); $ii++){
+                                                                    if($details['p_buy_prices'][$ii]['for_id'] == $item['product_info']['id']){
+                                                                        $buy_amt += (float) $details['p_buy_prices'][$ii]['buy_price'] * (float) $item['product_info']['quantity'];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                echo $qty;
+                                                ?>
+                                            </td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $buy_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt - $buy_amt; ?></td>
                                         </tr>
                                     <?php }
                                 }
-                            } elseif($product_id>0) {
-                                foreach($getAllCategory as $row){
-                                    if($row['id'] == $category_id) { ?>
-                                        <tr>
-                                            <td><?= $row['name']; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    <?php }
-                                }
+                            } elseif($product_id>0) { 
+                                $sale_amt = 0;
+                                $buy_amt = 0;
+                                $qty = 0;
+                                $pname = '';
+                                for($i=0; $i<count($details['sales_result']); $i++){
+                                    foreach(unserialize($details['sales_result'][$i]['products']) as $line=>$item) {
+                                        if($item['product_info']['id'] == $product_id){
+                                            $qty+= $item['product_info']['quantity'];
+                                            $sale_amt += (float) $item['product_info']['price'] * (float) $item['product_info']['quantity'];
+                                            if((float) $item['product_info']['cost_price'] > 0)
+                                                $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
+                                            else{
+                                                for($ii = 0; $ii<count($details['p_buy_prices']); $ii++){
+                                                    if($details['p_buy_prices'][$ii]['for_id'] == $item['product_info']['id']){
+                                                        $buy_amt += (float) $details['p_buy_prices'][$ii]['buy_price'] * (float) $item['product_info']['quantity'];
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            for($ii = 0; $ii<count($details['p_buy_prices']); $ii++){
+                                                if($details['p_buy_prices'][$ii]['for_id'] == $item['product_info']['id']){
+                                                    $pname = $details['p_buy_prices'][$ii]['title'];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                } ?>
+                                <tr>
+                                    <td><?= $pname; ?></td>
+                                    <td><?= $qty; ?></td>
+                                    <td><?= $buy_amt; ?></td>
+                                    <td><?= $sale_amt; ?></td>
+                                    <td><?= $sale_amt - $buy_amt; ?></td>
+                                </tr> <?php 
                             } else {
                                 foreach($getAllCategory as $row){
                                     if(array_search($row['id'], $details['catids']) !== false) { ?>
@@ -93,7 +145,7 @@ function isSerialized($value) {
                                                     // $sale_amt += $details['sales_result'][$i]['total'];
                                                     foreach(unserialize($details['sales_result'][$i]['products']) as $line=>$item) {
                                                         if($item['product_info']['shop_categorie'] == $row['id']){
-                                                            $qty++;
+                                                            $qty+= $item['product_info']['quantity'];
                                                             $sale_amt += (float) $item['product_info']['price'] * (float) $item['product_info']['quantity'];
                                                             if((float) $item['product_info']['cost_price'] > 0)
                                                                 $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
