@@ -189,10 +189,10 @@ function isSerialized($value) {
                         <tfoot>
                             <tr>
                                 <td></td>
-                                <td><?= $tq; ?></td>
-                                <td><?= number_format($tbuy, 2); ?></td>
-                                <td><?= number_format($tsale, 2); ?></td>
-                                <td><?= number_format($tsale - $tbuy, 2); ?></td>
+                                <td style="text-align: right; padding-right: 10px;"><?= $tq; ?></td>
+                                <td style="text-align: right; padding-right: 10px;"><?= number_format($tbuy, 2); ?></td>
+                                <td style="text-align: right; padding-right: 10px;"><?= number_format($tsale, 2); ?></td>
+                                <td style="text-align: right; padding-right: 10px;"><?= number_format($tsale - $tbuy, 2); ?></td>
                             </tr>
                         </tfoot>
                     </table>
