@@ -50,6 +50,7 @@ function isSerialized($value) {
                         <thead>
                             <tr style="background-color: #CCC;">
                                 <th style="text-align: left; padding-left: 10px;">Products/ Categories Name</th>
+                                <th>Quantity</th>
                                 <th style="text-align: right; padding-right: 10px;">Purchase (BDT)</th>
                                 <th style="text-align: right; padding-right: 10px;">Sales (BDT)</th>
                                 <th style="text-align: right; padding-right: 10px;">Profit or Loss (BDT)</th>
@@ -83,14 +84,16 @@ function isSerialized($value) {
                                     if(array_search($row['id'], $details['catids']) !== false) { ?>
                                         <tr>
                                             <td><?= $row['name']; ?></td>
-                                            <td>
+                                            <td style="text-align: right; padding-right: 10px;">
                                                 <?php 
                                                 $sale_amt = 0;
                                                 $buy_amt = 0;
+                                                $qty = 0;
                                                 for($i=0; $i<count($details['sales_result']); $i++){
                                                     // $sale_amt += $details['sales_result'][$i]['total'];
                                                     foreach(unserialize($details['sales_result'][$i]['products']) as $line=>$item) {
                                                         if($item['product_info']['shop_categorie'] == $row['id']){
+                                                            $qty++;
                                                             $sale_amt += (float) $item['product_info']['price'] * (float) $item['product_info']['quantity'];
                                                             if((float) $item['product_info']['cost_price'] > 0)
                                                                 $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
@@ -105,13 +108,12 @@ function isSerialized($value) {
                                                         }
                                                     }
                                                 }
-                                                echo $buy_amt;
+                                                echo $qty;
                                                 ?>
                                             </td>
-                                            <td><?= $sale_amt; ?></td>
-                                            <td>
-                                                <?= $sale_amt - $buy_amt; ?>
-                                            </td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $buy_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt - $buy_amt; ?></td>
                                         </tr>
                                     <?php }
                                 }
