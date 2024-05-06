@@ -58,9 +58,31 @@ function isSerialized($value) {
                             <?php if($category_id>0){
                                 foreach($getAllCategory as $row){
                                     if($row['id'] == $category_id) { ?>
-                                        <p><?= $row['name']; ?></p>
+                                        <tr>
+                                            <td><?= $row['name']; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     <?php }
                                 }
+                            } elseif($product_id>0) {
+                                foreach($getAllCategory as $row){
+                                    if($row['id'] == $category_id) { ?>
+                                        <tr>
+                                            <td><?= $row['name']; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php }
+                                }
+                            } else {
+                                foreach($getAllCategory as $row){ ?>
+                                    <tr>
+                                        <td><?= $row['name']; ?></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                <?php }
                             }  ?>
                             
                         </tbody>
