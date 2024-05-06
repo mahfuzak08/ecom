@@ -188,7 +188,7 @@ function isSerialized($value) {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td></td>
+                                <td>Total</td>
                                 <td style="text-align: right; padding-right: 10px;"><?= $tq; ?></td>
                                 <td style="text-align: right; padding-right: 10px;"><?= number_format($tbuy, 2); ?></td>
                                 <td style="text-align: right; padding-right: 10px;"><?= number_format($tsale, 2); ?></td>
