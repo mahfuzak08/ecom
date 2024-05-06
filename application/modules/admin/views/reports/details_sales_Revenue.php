@@ -83,9 +83,35 @@ function isSerialized($value) {
                                     if(array_search($row['id'], $details['catids']) !== false) { ?>
                                         <tr>
                                             <td><?= $row['name']; ?></td>
-                                            <td><?= count($details['sales_result']); ?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                                <?php 
+                                                $sale_amt = 0;
+                                                $buy_amt = 0;
+                                                for($i=0; $i<count($details['sales_result']); $i++){
+                                                    // $sale_amt += $details['sales_result'][$i]['total'];
+                                                    foreach(unserialize($details['sales_result'][$i]['products']) as $line=>$item) {
+                                                        if($item['product_info']['shop_categorie'] == $row['id']){
+                                                            $sale_amt += (float) $item['product_info']['price'] * (float) $item['product_info']['quantity'];
+                                                            if((float) $item['product_info']['cost_price'] > 0)
+                                                                $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
+                                                            else{
+                                                                for($ii = 0; $ii<count($details['p_buy_prices']); $ii++){
+                                                                    if($details['p_buy_prices'][$ii]['pid'] == $item['product_info']['id']){
+                                                                        $buy_amt += (float) $details['p_buy_prices'][$ii]['buy_price'] * (float) $item['product_info']['quantity'];
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                echo $buy_amt;
+                                                ?>
+                                            </td>
+                                            <td><?= $sale_amt; ?></td>
+                                            <td>
+                                                <?= $sale_amt - $buy_amt; ?>
+                                            </td>
                                         </tr>
                                     <?php }
                                 }
