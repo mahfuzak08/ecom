@@ -57,6 +57,11 @@ function isSerialized($value) {
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            $tq = 0;
+                            $tbuy = 0;
+                            $tsale = 0;
+                            ?>
                             <?php if($category_id>0){
                                 foreach($getAllCategory as $row){
                                     if($row['id'] == $category_id) { ?>
@@ -87,11 +92,14 @@ function isSerialized($value) {
                                                     }
                                                 }
                                                 echo $qty;
+                                                $tq += $qty;
+                                                $tbuy += $buy_amt;
+                                                $tsale += $sale_amt;
                                                 ?>
                                             </td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $buy_amt; ?></td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt; ?></td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt - $buy_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($buy_amt, 2); ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt, 2); ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt - $buy_amt, 2); ?></td>
                                         </tr>
                                     <?php }
                                 }
@@ -123,13 +131,17 @@ function isSerialized($value) {
                                             }
                                         }
                                     }
-                                } ?>
+                                } 
+                                $tq += $qty;
+                                $tbuy += $buy_amt;
+                                $tsale += $sale_amt;
+                                ?>
                                 <tr>
                                     <td><?= $pname; ?></td>
                                     <td><?= $qty; ?></td>
-                                    <td><?= $buy_amt; ?></td>
-                                    <td><?= $sale_amt; ?></td>
-                                    <td><?= $sale_amt - $buy_amt; ?></td>
+                                    <td><?= number_format($buy_amt, 2); ?></td>
+                                    <td><?= number_format($sale_amt, 2); ?></td>
+                                    <td><?= number_format($sale_amt - $buy_amt, 2); ?></td>
                                 </tr> <?php 
                             } else {
                                 foreach($getAllCategory as $row){
@@ -161,17 +173,28 @@ function isSerialized($value) {
                                                     }
                                                 }
                                                 echo $qty;
+                                                $tq += $qty;
+                                                $tbuy += $buy_amt;
+                                                $tsale += $sale_amt;
                                                 ?>
                                             </td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $buy_amt; ?></td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt; ?></td>
-                                            <td style="text-align: right; padding-right: 10px;"><?= $sale_amt - $buy_amt; ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($buy_amt, 2); ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt, 2); ?></td>
+                                            <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt - $buy_amt, 2); ?></td>
                                         </tr>
                                     <?php }
                                 }
                             }  ?>
-                            
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td><?= $tq; ?></td>
+                                <td><?= number_format($tbuy, 2); ?></td>
+                                <td><?= number_format($tsale, 2); ?></td>
+                                <td><?= number_format($tsale - $tbuy, 2); ?></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
