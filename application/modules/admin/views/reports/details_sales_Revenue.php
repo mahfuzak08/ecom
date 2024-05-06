@@ -138,10 +138,10 @@ function isSerialized($value) {
                                 ?>
                                 <tr>
                                     <td><?= $pname; ?></td>
-                                    <td><?= $qty; ?></td>
-                                    <td><?= number_format($buy_amt, 2); ?></td>
-                                    <td><?= number_format($sale_amt, 2); ?></td>
-                                    <td><?= number_format($sale_amt - $buy_amt, 2); ?></td>
+                                    <td style="text-align: right; padding-right: 10px;"><?= $qty; ?></td>
+                                    <td style="text-align: right; padding-right: 10px;"><?= number_format($buy_amt, 2); ?></td>
+                                    <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt, 2); ?></td>
+                                    <td style="text-align: right; padding-right: 10px;"><?= number_format($sale_amt - $buy_amt, 2); ?></td>
                                 </tr> <?php 
                             } else {
                                 foreach($getAllCategory as $row){
