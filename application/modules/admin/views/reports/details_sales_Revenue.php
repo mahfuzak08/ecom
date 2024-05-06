@@ -96,7 +96,7 @@ function isSerialized($value) {
                                                                 $buy_amt += (float) $item['product_info']['cost_price'] * (float) $item['product_info']['quantity'];
                                                             else{
                                                                 for($ii = 0; $ii<count($details['p_buy_prices']); $ii++){
-                                                                    if($details['p_buy_prices'][$ii]['pid'] == $item['product_info']['id']){
+                                                                    if($details['p_buy_prices'][$ii]['for_id'] == $item['product_info']['id']){
                                                                         $buy_amt += (float) $details['p_buy_prices'][$ii]['buy_price'] * (float) $item['product_info']['quantity'];
                                                                         break;
                                                                     }
