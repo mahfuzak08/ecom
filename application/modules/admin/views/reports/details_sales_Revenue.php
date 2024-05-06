@@ -49,9 +49,10 @@ function isSerialized($value) {
                     <table style="border: 1px solid #CCC; width: 100%; border-collapse: collapse; line-height: 30px;" class="table table-bordered">
                         <thead>
                             <tr style="background-color: #CCC;">
-                                <th style="text-align: left; padding-left: 10px;">Account Name</th>
-                                <th>Ref</th>
-                                <th style="text-align: right; padding-right: 10px;">Amount</th>
+                                <th style="text-align: left; padding-left: 10px;">Products/ Categories Name</th>
+                                <th style="text-align: right; padding-right: 10px;">Purchase (BDT)</th>
+                                <th style="text-align: right; padding-right: 10px;">Sales (BDT)</th>
+                                <th style="text-align: right; padding-right: 10px;">Profit or Loss (BDT)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@ function isSerialized($value) {
                                     if($row['id'] == $category_id) { ?>
                                         <tr>
                                             <td><?= $row['name']; ?></td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -72,17 +74,21 @@ function isSerialized($value) {
                                             <td><?= $row['name']; ?></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                         </tr>
                                     <?php }
                                 }
                             } else {
-                                foreach($getAllCategory as $row){ ?>
-                                    <tr>
-                                        <td><?= $row['name']; ?></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                <?php }
+                                foreach($getAllCategory as $row){
+                                    if(array_search($row['id'], $details['catids']) !== false) { ?>
+                                        <tr>
+                                            <td><?= $row['name']; ?></td>
+                                            <td><?= count($details['sales_result']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php }
+                                }
                             }  ?>
                             
                         </tbody>
