@@ -161,7 +161,7 @@
                                                 <ul class="shop-dropdown">
                                                     <li class="dropdown text-center">
                                                         <a href="#" class="dropdown-toggle" id="openpopupcart" data-toggle="dropdown" role="button" aria-expanded="false"> 
-                                                            <div><span class="sumOfItems"><?= $cartItems['array'] == 0 ? 0 : $sumOfItems ?></span> <?= lang('items') ?></div>
+                                                            <div><span class="sumOfItems"><?= isset($cartItems['array']) && is_array($cartItems['array']) && count($cartItems['array']) == 0 ? 0 : $sumOfItems ?></span> <?= lang('items') ?></div>
                                                             <img src="<?= base_url('template/imgs/shopping-cart-icon-515.png') ?>" alt="">
                                                             <span class="caret"></span>
                                                         </a>
