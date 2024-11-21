@@ -6,6 +6,10 @@
         <title>Order Details # 1 - RMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
+			#invoice-POS h1.nologo {
+				font-size: 2em;  
+				margin: 20px 0px 5px 0px;
+			}
 			#invoice-POS h1 {
 				font-size: 1.5em;  
 			}
@@ -66,8 +70,10 @@
 				<tbody>
 					<tr>
 						<td style="border-bottom:1px #333 solid;" align="center" colspan="5">
+							<?php if(@$logo_in != 'off'): ?>
 							<img class="img img-responsive" src="<?= base_url('attachments/'. SHOP_DIR .'/site_logo/' . $sitelogo) ?>" style="max-height: 80px; max-width: 200px;" alt="logo"><br>
-							<h1><strong><?= $companyName; ?></strong></h1>
+							<?php endif; ?>
+							<h1 class="<?= @$logo_in == 'off' ? 'nologo' : ''; ?>"><strong><?= $companyName; ?></strong></h1>
 							<p><?= $footerContactAddr; ?><br>
 								Phone: <?= $footerContactPhone; ?></p>
 							<?= $order['order_type'] == 'sale_return' ? '<h4>Sales Return</h4>' : ''; ?>
@@ -176,7 +182,7 @@
 						<td colspan="5" class="text-center"><br><img src="data:image/png;base64,<?= $barcode; ?>"></td>               
 					</tr>  
 					<tr>
-						<td colspan="5" class="text-center"><p>Thank you...</p></td>               
+						<td colspan="5" class="text-center">SL No: <?= $order['order_id']; ?><p>Thank you...</p></td>
 					</tr> 
 				</tbody>
 			</table>

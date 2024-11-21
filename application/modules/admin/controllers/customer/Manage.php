@@ -32,6 +32,14 @@ class Manage extends ADMIN_Controller
             $id = $this->Customer_model->add_update_customer($_POST);
             if($id > 0) redirect('admin/customer');
         }
+        if(isset($_GET['trnx_delete'])){
+            $r = $this->Customer_model->delete_cus_trnx($_GET['trnx_delete']);
+            if(!$r){
+                $this->saveHistory('Customer transection delete. Details are: '.json_encode($r));
+                $this->session->set_flashdata('result_delete', 'Customer transection delete successfully.');
+                redirect('admin/customer');
+            }
+        }
         if(isset($_GET['delete'])){
             if($this->Customer_model->delete_cus($_GET['delete'])){
                 $this->saveHistory('Delete a customer.');

@@ -126,6 +126,9 @@
         <div class="col-md-4 col-sm-4 col-xs-12">
             <button class="btn btn-success btn-block btn-flat" onclick="printDiv('invoice')">Print Invoice</button><br>
             <a class="btn btn-primary btn-block btn-flat" href="<?= site_url("admin/customer"); ?>">Go to Customer</a><br>
+            <?php if(strpos($access[0]['access'], CUSTOMER_TRAN_DELETE)>-1) { ?>
+            <a class="btn btn-danger btn-block btn-flat" href="<?= site_url("admin/customer?trnx_delete=".$customer_payment_data[0]['id']); ?>">Delete this Transaction</a><br>
+            <?php } ?>
             <!-- <button class="btn btn-info btn-block btn-flat">SMS Invoice</button><br> -->
             <!-- <button class="btn btn-primary btn-block btn-flat">Email Invoice</button><br> -->
             <!-- <button class="btn btn-default btn-block btn-flat" onclick="toggle_div('#inv_settings')">Invoice Settings</button><br>

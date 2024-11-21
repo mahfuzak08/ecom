@@ -26,7 +26,7 @@ class Barcode extends ADMIN_Controller
         $head['description'] = 'Barcode';
         $head['keywords'] = '';
 
-        if (isset($_POST['print_preview'])) {
+        if (isset($_POST['print_preview']) && isset($_POST['barcode']) && $_POST['barcode'] != '') {
             $data['barcode'] = $this->set_barcode($_POST['barcode']);
             $data['product'] = $this->Products_model->getProductPriceGivenBarcode($_GET['bc']);
         }

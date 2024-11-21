@@ -149,6 +149,41 @@ class Customer_model extends CI_Model
         }
         return true;
     }
+    
+    public function delete_cus_trnx($id){
+        $this->db->trans_begin();
+        $this->db->where('shop_id', SHOP_ID);
+        $this->db->where('id', $id);
+        $old_trnx = $this->db->get("cus_sup_trans")->result_array();
+
+        $this->db->where('shop_id', SHOP_ID);
+        $this->db->where('id', $id);
+        if (!$this->db->delete('cus_sup_trans')) {
+            log_message('error', print_r($this->db->error(), true));
+        }
+        
+        $this->db->where('id', $old_trnx[0]['trans_for']);
+        $this->db->where('shop_id', SHOP_ID);
+        $this->db->set('balance', 'balance+'.abs($old_trnx[0]['amt']), FALSE);
+        if( !$this->db->update('customer') ){
+            log_message('error', print_r($this->db->error(), true));
+        }
+
+        $this->db->where('shop_id', SHOP_ID);
+        $this->db->where('trans_no', $id);
+        $this->db->where('type', 'customer_payment');
+        if (!$this->db->delete('account_trans')) {
+            log_message('error', print_r($this->db->error(), true));
+        }
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return $old_trnx;
+        }
+    }
 
     private function countCustomerByPhone($phone)
     {

@@ -52,12 +52,12 @@
 		if(isset($barcode)) {
 			//for($i=0; $i<$_POST['nocopy']; $i++){ 
 			?>
-				<div style="padding: 15px 0px;width: 210px;height: 90px;text-align: center;">
-					<div style="padding: 0px 20px;font-size:14px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-align: center;">
+				<div style="padding: 15px 0px;font-size:16px;width: 210px;height: 90px;text-align: center;">
+					<div style="padding: 0px 20px;font-size:16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-align: center;">
 						<b><?= $companyName; ?><br>
 						Price: <?= @$product["price"]; ?> BDT</b>
 					</div>
-					<img src="data:image/png;base64,<?= $barcode; ?>" style="max-width:200px;margin-right: auto;display: block;">
+					<img src="data:image/png;base64,<?= $barcode; ?>" style="max-width: 200px; display: block; margin: 0 auto;">
 					<?= @$product["barcode"]; ?>
 				</div>
 				<?php 

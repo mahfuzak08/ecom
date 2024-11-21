@@ -594,6 +594,19 @@
                                         <i><b><?= $footerContactAddr; ?></b></i>
                                     </td>
                                 </tr>
+								<?php } elseif(@$logo_in == 'off') { ?>
+                                <tr>
+                                    <td style="vertical-align: top;padding:5px 10px;text-align:center">
+                                        <b style="font-size:18px;"><?= $companyName; ?></b><br>
+                                        <b style="font-size:16px;"><?= $footerContactPhone; ?></b><br>
+                                        <i><b><?= $footerContactAddr; ?></b></i>
+                                        <?= $order['order_type'] == 'sale_return' ? '<h4>Sales Return</h4>' : ''; ?>
+                                        <div style="text-align:center">SL No: <?= $order['order_id']; ?></div>
+                                        <?php if($order['note']): ?>
+                                        <div style="text-align:center">Note: <?= $order['note']; ?></div>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
 								<?php } else { ?>
                                 <tr>
                                     <td style="vertical-align: top;text-align:center">
@@ -831,7 +844,8 @@
                                 <label>Logo Image Position</label>
                                 <div class="radio">
                                     <label><input type="radio" name="logo_in" value="center" <?= @$logo_in == "" ? 'checked' : '' ?>> Center</label><br>
-                                    <label><input type="radio" name="logo_in" value="left" <?= @$logo_in == "left" ? 'checked' : '' ?>> Left</label>
+                                    <label><input type="radio" name="logo_in" value="left" <?= @$logo_in == "left" ? 'checked' : '' ?>> Left</label><br>
+                                    <label><input type="radio" name="logo_in" value="off" <?= @$logo_in == "off" ? 'checked' : '' ?>> Off</label>
                                 </div>
                                 <button class="btn btn-default" value="" type="submit">Save</button>
                             </form>

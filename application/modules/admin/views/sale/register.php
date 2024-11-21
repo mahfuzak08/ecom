@@ -381,7 +381,8 @@ if (!isset($_GET['settings'])) { ?>
                         <label>Logo Image Position</label>
                         <div class="radio">
                             <label><input type="radio" name="logo_in" value="center" <?= @$logo_in == "" ? 'checked' : '' ?>> Center</label><br>
-                            <label><input type="radio" name="logo_in" value="left" <?= @$logo_in == "left" ? 'checked' : '' ?>> Left</label>
+                            <label><input type="radio" name="logo_in" value="left" <?= @$logo_in == "left" ? 'checked' : '' ?>> Left</label><br>
+                            <label><input type="radio" name="logo_in" value="off" <?= @$logo_in == "off" ? 'checked' : '' ?>> Off</label>
                         </div>
                         <button class="btn btn-default" value="" type="submit">Save</button>
                     </form>

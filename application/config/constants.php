@@ -123,7 +123,7 @@ define("SALES_INV_SETUP", "214");
 define("CUSTOMER", "215");
 define("CUSTOMER_EDIT", "216");
 define("CUSTOMER_DELETE", "217");
-define("CUSTOMER_TRAN_DELETE", "217");
+define("CUSTOMER_TRAN_DELETE", "220");
 
 define("PURCHASE", "230");
 define("NEW_VENDOR", "240");
