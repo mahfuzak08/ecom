@@ -363,6 +363,15 @@ if (!isset($_GET['settings'])) { ?>
                     </form>
                     <br>
                     <form method="POST" action="<?= site_url("admin/settings"); ?>">
+                        <label>Invoice Language</label>
+                        <div class="radio">
+                            <label><input type="radio" name="INV_LANGUAGE" value="en" <?= $INV_LANGUAGE == "en" ? 'checked' : '' ?>> English (Default)</label><br>
+                            <label><input type="radio" name="INV_LANGUAGE" value="bn" <?= $INV_LANGUAGE == "bn" ? 'checked' : '' ?>> Bangla</label>
+                        </div>
+                        <button class="btn btn-default" value="" type="submit">Save</button>
+                    </form>
+                    <br>
+                    <form method="POST" action="<?= site_url("admin/settings"); ?>">
                         <label>Printer Type</label>
                         <div class="radio">
                             <label><input type="radio" name="printer_type" value="np" <?= $printer_type == "np" ? 'checked' : '' ?>> Normal Printer</label><br>

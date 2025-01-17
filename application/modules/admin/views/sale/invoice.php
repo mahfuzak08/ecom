@@ -102,9 +102,9 @@
                                                 <?php } ?>
                                             </td>
                                             <?php } ?>
-                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= $item['product_info']['quantity']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= number_format($item['product_info']['price'], $nf); ?></td>
-                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= number_format($item['product_info']['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['quantity'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['price'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= price_format($item['product_info']['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                     <?php }?>
                                 </tbody>
@@ -112,43 +112,43 @@
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 2 : 1; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td style="text-align:center;padding: 5px;text-align:right;">Total Quantity</td>
-                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= $tq; ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= price_format($tq, $INV_LANGUAGE); ?></td>
                                             <td style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Sub Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($st, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($st, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php if($order['shipping_cost']>0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Shipping Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['shipping_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['shipping_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['labour_cost']>0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Labour Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['labour_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['labour_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['carrying_cost']>0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Carrying Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['carrying_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['carrying_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['other_cost']>0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Other Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['other_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['other_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS" && $order['discount_code']>0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Discount</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= number_format($order['discount_code'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= price_format($order['discount_code'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -159,7 +159,7 @@
                                                 <tr>
                                                     <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?> Receive</td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                                 $order['total'] += $pay['payment_amount'];
                                                 endif;
@@ -171,7 +171,7 @@
                                             <td>&nbsp;</td>
                                             <td colspan="<?= $invDesShow != 1 ? 2 : 1; ?>" style="padding: 5px; font-weight: bold;">In Word: <?= @$iw; ?> Taka Only.</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($order['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($order['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -182,7 +182,7 @@
                                                 <tr>
                                                     <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?><?= $pay['payment_title'] != "Change Amount" ? " Payment" : ""; ?></td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($pay['payment_amount']); ?></td>
                                                 </tr><?php
                                             }
                                             endif;
@@ -191,14 +191,14 @@
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Dues</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due']); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['asof_date_due']<0): ?>
                                         <tr>
                                             <td colspan="<?= $invDesShow != 1 ? 3 : 2; ?>" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Advance</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'] * -1, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'] * -1); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                 <!--</tfoot>-->
@@ -281,9 +281,9 @@
                                             <td style="border-bottom: 1px dashed;width:2%;padding: 5px 10px;"><?= $i++; ?></td>
                                             <td style="border-bottom: 1px dashed;width:23%;padding: 5px;"><?= $item['product_info']['name']; ?></td>
                                             <td style="border-bottom: 1px dashed;width:40%;padding: 5px;"><?= $item['product_info']['description']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= $item['product_info']['quantity']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= number_format($item['product_info']['price'], $nf); ?></td>
-                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= number_format($item['product_info']['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['quantity'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['price'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= price_format($item['product_info']['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                     <?php }?>
                                 </tbody>
@@ -291,43 +291,43 @@
                                         <tr>
                                             <td colspan="2" style="padding: 5px;">&nbsp;</td>
                                             <td style="text-align:center;padding: 5px;text-align:right;">Total Quantity</td>
-                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= $tq; ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= price_format($tq, $INV_LANGUAGE); ?></td>
                                             <td style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Sub Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($st, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($st, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php if($order['shipping_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Shipping Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['shipping_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['shipping_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['labour_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Labour Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['labour_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['labour_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['carrying_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Carrying Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['carrying_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['carrying_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['other_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Other Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['other_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['other_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS" && $order['discount_code']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Discount</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= number_format($order['discount_code'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= price_format($order['discount_code'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -338,7 +338,7 @@
                                                 <tr>
                                                     <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?> Receive</td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                                 $order['total'] += $pay['payment_amount'];
                                                 endif;
@@ -349,7 +349,7 @@
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($order['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($order['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -359,7 +359,7 @@
                                                 <tr>
                                                     <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?><?= $pay['payment_title'] != "Change Amount" ? " Payment" : ""; ?></td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                             }
                                             endif;
@@ -368,14 +368,14 @@
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Dues</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['asof_date_due']<0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Advance</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'] * -1, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'] * -1, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                 </tfoot>
@@ -455,9 +455,9 @@
                                             <td style="border-bottom: 1px dashed;width:2%;padding: 5px 10px;"><?= $i++; ?></td>
                                             <td style="border-bottom: 1px dashed;width:23%;padding: 5px;"><?= $item['product_info']['name']; ?></td>
                                             <td style="border-bottom: 1px dashed;width:40%;padding: 5px;"><?= $item['product_info']['description']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= $item['product_info']['quantity']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= number_format($item['product_info']['price'], $nf); ?></td>
-                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= number_format($item['product_info']['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:8%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['quantity'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:10%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['price'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:12%;padding: 5px 10px;text-align:right;"><?= price_format($item['product_info']['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                     <?php }?>
                                 </tbody>
@@ -465,43 +465,43 @@
                                         <tr>
                                             <td colspan="2" style="padding: 5px;">&nbsp;</td>
                                             <td style="text-align:center;padding: 5px;text-align:right;">Total Quantity</td>
-                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= $tq; ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= price_format($tq, $INV_LANGUAGE); ?></td>
                                             <td style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Sub Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($st, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($st, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php if($order['shipping_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Shipping Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['shipping_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['shipping_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['labour_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Labour Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['labour_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['labour_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['carrying_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Carrying Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['carrying_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['carrying_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['other_cost']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Other Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['other_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['other_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS" && $order['discount_code']>0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Discount</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= number_format($order['discount_code'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= price_format($order['discount_code'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -511,7 +511,7 @@
                                                 <tr>
                                                     <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?> Receive</td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                                 $order['total'] += $pay['payment_amount'];
                                                 endif;
@@ -522,7 +522,7 @@
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($order['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($order['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -532,7 +532,7 @@
                                                 <tr>
                                                     <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?><?= $pay['payment_title'] != "Change Amount" ? " Payment" : ""; ?></td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                             }
                                             endif;
@@ -541,14 +541,14 @@
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Dues</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['asof_date_due']<0): ?>
                                         <tr>
                                             <td colspan="3" style="padding: 5px;">&nbsp;</td>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Advance</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'] * -1, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'] * -1, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                 </tfoot>
@@ -669,9 +669,9 @@
                                             <td style="border-bottom: 1px dashed;width:2%;padding: 5px 10px;"><?= $i++; ?></td>
                                             <td style="border-bottom: 1px dashed;width:45%;padding: 5px;"><?= $item['product_info']['name']; ?></td>
                                             <!-- <td style="border-bottom: 1px dashed;width:40%;padding: 5px;"><?= $item['product_info']['description']; ?></td> -->
-                                            <td style="border-bottom: 1px dashed;width:13%;padding: 5px;text-align:center;"><?= $item['product_info']['quantity']; ?></td>
-                                            <td style="border-bottom: 1px dashed;width:20%;padding: 5px;text-align:center;"><?= number_format($item['product_info']['price'], $nf); ?></td>
-                                            <td style="border-bottom: 1px dashed;width:20%;padding: 5px 10px;text-align:right;"><?= number_format($item['product_info']['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:13%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['quantity'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:20%;padding: 5px;text-align:center;"><?= price_format($item['product_info']['price'], $INV_LANGUAGE); ?></td>
+                                            <td style="border-bottom: 1px dashed;width:20%;padding: 5px 10px;text-align:right;"><?= price_format($item['product_info']['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                     <?php }?>
                                 </tbody>
@@ -680,38 +680,38 @@
                                             <td colspan="2" rowspan="7" style="vertical-align: top;padding: 5px; text-align:right;">Total Quantity <br><br>
                                             <img src="data:image/png;base64,<?= $barcode; ?>">
                                             </td>
-                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= $tq; ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:center;padding: 5px;"><?= price_format($tq, $INV_LANGUAGE); ?></td>
                                             <td style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Sub Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($st, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($st, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php if($order['shipping_cost']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Shipping Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['shipping_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['shipping_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['labour_cost']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Labour Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['labour_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['labour_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['carrying_cost']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Carrying Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['carrying_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['carrying_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
 										<?php if($order['other_cost']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Other Cost</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= number_format($order['other_cost'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(+)<?= price_format($order['other_cost'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS" && $order['discount_code']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Discount</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= number_format($order['discount_code'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;">(-)<?= price_format($order['discount_code'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -721,7 +721,7 @@
                                                 if($pay['payment_title'] == 'Advance' || $pay['payment_title'] == 'Collection'): ?>
                                                 <tr>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?> Receive</td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;">(+)<?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                                 $order['total'] += $pay['payment_amount'];
                                                 endif;
@@ -731,7 +731,7 @@
                                         <?php if($order['total']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;">Total</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($order['total'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($order['total'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['referrer'] == "POS"): 
@@ -740,7 +740,7 @@
                                                 if($pay['payment_title'] == 'Advance' || $pay['payment_title'] == 'Collection') continue; ?>
                                                 <tr>
                                                     <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;"><?= $pay['payment_title']; ?><?= $pay['payment_title'] != "Change Amount" ? " Payment" : ""; ?></td>
-                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= number_format($pay['payment_amount'], $nf); ?></td>
+                                                    <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;"><?= price_format($pay['payment_amount'], $INV_LANGUAGE); ?></td>
                                                 </tr><?php
                                             }
                                             endif;
@@ -748,13 +748,13 @@
                                         <?php if($order['asof_date_due']>0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Dues</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'], $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'], $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                         <?php if($order['asof_date_due']<0): ?>
                                         <tr>
                                             <td colspan="2" style="border-bottom: 1px dashed;text-align:right;padding: 5px;font-weight:700;font-size:15px;color:#F00;">Total Advance</td>
-                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= number_format($order['asof_date_due'] * -1, $nf); ?></td>
+                                            <td style="border-bottom: 1px dashed;text-align:right;padding: 5px 10px;font-weight:700;font-size:15px;color:#F00;"><?= price_format($order['asof_date_due'] * -1, $INV_LANGUAGE); ?></td>
                                         </tr>
                                         <?php endif; ?>
                                 </tfoot>
@@ -815,6 +815,15 @@
                                     <label><input type="radio" name="page_width" value="100" <?= $page_width == "100" ? 'checked' : '' ?>> Full width ( 100% )</label><br>
                                     <label><input type="radio" name="page_width" value="50" <?= $page_width == "50" ? 'checked' : '' ?>> Half width ( 50% )</label><br>
                                     <label><input type="radio" name="page_width" value="50x2" <?= $page_width == "50x2" ? 'checked' : '' ?>> Half width x 2/per page</label>
+                                </div>
+                                <button class="btn btn-default" value="" type="submit">Save</button>
+                            </form>
+                            <br>
+                            <form method="POST" action="<?= site_url("admin/settings"); ?>">
+                                <label>Invoice Language</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="INV_LANGUAGE" value="en" <?= $INV_LANGUAGE == "en" ? 'checked' : '' ?>> English (Default)</label><br>
+                                    <label><input type="radio" name="INV_LANGUAGE" value="bn" <?= $INV_LANGUAGE == "bn" ? 'checked' : '' ?>> Bangla</label>
                                 </div>
                                 <button class="btn btn-default" value="" type="submit">Save</button>
                             </form>

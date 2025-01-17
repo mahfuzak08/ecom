@@ -34,6 +34,7 @@ class Salemanage extends ADMIN_Controller
         if(isset($_GET['settings'])){
             $data['page_width'] = $this->Home_admin_model->getValueStore('page_width');
             $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
+            $data['INV_LANGUAGE'] = $this->Home_admin_model->getValueStore('INV_LANGUAGE');
             $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
             $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
             
@@ -44,6 +45,7 @@ class Salemanage extends ADMIN_Controller
         }else{
             $data['page_width'] = 0;
             $data['printer_type'] = 0;
+            $data['INV_LANGUAGE'] = "en";
             $data['details_img'] = 0;
             $data['logo_in'] = 0;
             $data['inv_addLine_1'] = "";
@@ -405,6 +407,7 @@ class Salemanage extends ADMIN_Controller
 
         $data['page_width'] = $this->Home_admin_model->getValueStore('page_width');
         $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
+        $data['INV_LANGUAGE'] = $this->Home_admin_model->getValueStore('INV_LANGUAGE');
         $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
         $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
         
@@ -438,6 +441,7 @@ class Salemanage extends ADMIN_Controller
 
         $data['page_width'] = $this->Home_admin_model->getValueStore('page_width');
         $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
+        $data['INV_LANGUAGE'] = $this->Home_admin_model->getValueStore('INV_LANGUAGE');
         $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
         $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
         $data['smsApi'] = $this->Home_admin_model->getValueStore('smsApi');
@@ -569,6 +573,7 @@ class Salemanage extends ADMIN_Controller
 
         $data['page_width'] = $this->Home_admin_model->getValueStore('page_width');
         $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
+        $data['INV_LANGUAGE'] = $this->Home_admin_model->getValueStore('INV_LANGUAGE');
         $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
         $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
         

@@ -72,6 +72,7 @@ class Settings extends ADMIN_Controller
         $data['outOfStock'] = $this->Home_admin_model->getValueStore('outOfStock');
         $data['page_width'] = $this->Home_admin_model->getValueStore('page_width');
         $data['printer_type'] = $this->Home_admin_model->getValueStore('printer_type');
+        $data['INV_LANGUAGE'] = $this->Home_admin_model->getValueStore('INV_LANGUAGE');
         $data['details_img'] = $this->Home_admin_model->getValueStore('details_img');
         $data['logo_in'] = $this->Home_admin_model->getValueStore('logo_in');
         
@@ -324,6 +325,12 @@ class Settings extends ADMIN_Controller
             $this->Home_admin_model->setValueStore('printer_type', $_POST['printer_type']);
             $this->session->set_flashdata('printer_type', 'Invoice printer type change');
             $this->saveHistory('Invoice printer type change');
+            redirect('admin/sale?settings');
+        }
+        if (isset($_POST['INV_LANGUAGE'])) {
+            $this->Home_admin_model->setValueStore('INV_LANGUAGE', $_POST['INV_LANGUAGE']);
+            $this->session->set_flashdata('INV_LANGUAGE', 'Invoice language change');
+            $this->saveHistory('Invoice language change');
             redirect('admin/sale?settings');
         }
         if (isset($_POST['details_img'])) {

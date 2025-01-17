@@ -4,8 +4,9 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-function price_format($astr, $des=2)
+function price_format($astr, $INV_LANGUAGE="en")
 {
+    $des=2;
     $bstr = 0;
     if($astr != ''){
         $astr = str_replace(',', '', $astr);
@@ -13,7 +14,7 @@ function price_format($astr, $des=2)
             $bstr = number_format($astr, $des);
         }
         
-        if(MY_LANGUAGE_ABBR == 'bn'){
+        if(MY_LANGUAGE_ABBR == 'bn' || $INV_LANGUAGE == 'bn'){
             $en_no = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
             $bn_no = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
             $astr = number_format($astr, $des);
