@@ -86,7 +86,7 @@ class Sales_model extends CI_Model
 	public function get_info_by_id_or_number($item_id)
 	{
 	    $where_or_where = "(p.id = '".$item_id."' OR p.barcode = '".$item_id."')";
-		$this->db->select('p.*, pt.title, pt.description, pt.price, pt.buy_price');
+		$this->db->select('p.*, pt.title, pt.description, pt.price, pt.buy_price, pt.wholesale_price');
 		$this->db->from('products as p');
 		$this->db->join('products_translations as pt', 'p.id = pt.for_id AND pt.abbr = "en"', 'left');
 		$this->db->where('p.visibility', 1);

@@ -89,7 +89,7 @@ class Products_model extends CI_Model
         $this->db->join('products_translations', 'products_translations.for_id = products.id', 'left');
         $this->db->where('products_translations.abbr', MY_DEFAULT_LANGUAGE_ABBR);
         $this->db->where('products.shop_id', SHOP_ID);
-        $query = $this->db->select('vendors.name as vendor_name, vendors.id as vendor_id, products.*, products_translations.title, products_translations.description, products_translations.price, products_translations.buy_price, products_translations.old_price, products_translations.abbr, products.url, products_translations.for_id, products_translations.basic_description')->get('products', $limit, $page);
+        $query = $this->db->select('vendors.name as vendor_name, vendors.id as vendor_id, products.*, products_translations.title, products_translations.description, products_translations.price, products_translations.wholesale_price, products_translations.buy_price, products_translations.old_price, products_translations.abbr, products.url, products_translations.for_id, products_translations.basic_description')->get('products', $limit, $page);
         return $query->result();
     }
 
@@ -266,6 +266,9 @@ class Products_model extends CI_Model
         $post['buy_price'] = str_replace(',', '.', $post['buy_price']);
         // $post['buy_price'][$i] = preg_replace("/[^0-9০-৯]/", "", $post['buy_price'][$i]);
 
+        $post['wholesale_price'] = str_replace(' ', '', $post['wholesale_price']);
+        $post['wholesale_price'] = str_replace(',', '.', $post['wholesale_price']);
+        
         $post['old_price'] = str_replace(' ', '', $post['old_price']);
         $post['old_price'] = str_replace(',', '.', $post['old_price']);
         // $post['old_price'][$i] = preg_replace("/[^0-9০-৯]/", "", $post['old_price'][$i]);
@@ -282,6 +285,7 @@ class Products_model extends CI_Model
                 'basic_description' => $post['basic_description'][$i],
                 'description' => $post['description'][$i],
                 'price' => $post['price'],
+                'wholesale_price' => $post['wholesale_price'],
                 'old_price' => $post['old_price'],
                 'buy_price' => $post['buy_price'],
                 'abbr' => $abbr,
@@ -313,6 +317,7 @@ class Products_model extends CI_Model
             $arr[$row->abbr]['description'] = $row->description;
             $arr[$row->abbr]['price'] = $row->price;
             $arr[$row->abbr]['old_price'] = $row->old_price;
+            $arr[$row->abbr]['wholesale_price'] = $row->wholesale_price;
             $arr[$row->abbr]['buy_price'] = $row->buy_price;
         }
         return $arr;

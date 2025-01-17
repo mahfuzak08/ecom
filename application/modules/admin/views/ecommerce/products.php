@@ -75,6 +75,9 @@
                                 <th>Purchase Price</th>
                                 <th>Old Price</th>
                                 <th>Price</th>
+                                <?php if ($wholesalePrice == 1) { ?>
+                                    <th>Wholesale Price</th>
+                                <?php } ?>
                                 <th>Quantity</th>
                                 <?php if ($multiSize == 1) { ?>
                                     <th>Size</th>
@@ -106,6 +109,9 @@
                                     <td><?= $row->buy_price; ?></td>
                                     <td><?= $row->old_price; ?></td>
                                     <td><?= $row->price; ?></td>
+                                    <?php if ($wholesalePrice == 1) { ?>
+                                        <td><?= $row->wholesale_price; ?></td>
+                                    <?php } ?>
                                     <td>
                                         <?php
                                         if ($row->quantity == 0) {

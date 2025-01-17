@@ -603,6 +603,27 @@
     </div>
 	<div class="col-xs-12">
         <div class="panel panel-success col-h">
+            <div class="panel-heading">Wholesale Price
+                <div class="box-tools pull-right"><button type="button" class="btn btn-success btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;margin-top: -5px;" data-original-title="Collapse"><i class="fa fa-plus"></i></button></div>
+            </div>
+            <div class="panel-collapse collapse">
+                <div class="panel-body">
+                    <?php if ($this->session->flashdata('wholesalePrice')) { ?>
+                        <div class="alert alert-info"><?= $this->session->flashdata('wholesalePrice') ?></div>
+                    <?php } ?>
+                    <form method="POST" action="">
+                        <input type="hidden" name="wholesalePrice" value="<?= $wholesalePrice ?>">
+                        <input <?= $wholesalePrice == 1 ? 'checked' : '' ?> data-toggle="toggle" data-for-field="wholesalePrice" class="toggle-changer" type="checkbox">
+                        <button class="btn btn-default" value="" type="submit">
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="col-xs-12">
+        <div class="panel panel-success col-h">
             <div class="panel-heading">Sales Return (Return Cash)
                 <div class="box-tools pull-right"><button type="button" class="btn btn-success btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;margin-top: -5px;" data-original-title="Collapse"><i class="fa fa-plus"></i></button></div>
             </div>

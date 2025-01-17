@@ -90,6 +90,7 @@ class Settings extends ADMIN_Controller
         $data['multiVendor'] = $this->Home_admin_model->getValueStore('multiVendor');
         $data['labourCost'] = $this->Home_admin_model->getValueStore('labourCost');
         $data['carryingCost'] = $this->Home_admin_model->getValueStore('carryingCost');
+        $data['wholesalePrice'] = $this->Home_admin_model->getValueStore('wholesalePrice');
         $data['salesReturn'] = $this->Home_admin_model->getValueStore('salesReturn');
         $data['barcodeScanner'] = $this->Home_admin_model->getValueStore('barcodeScanner');
         $data['multiSize'] = $this->Home_admin_model->getValueStore('multiSize');
@@ -412,6 +413,12 @@ class Settings extends ADMIN_Controller
             $this->Home_admin_model->setValueStore('carryingCost', $_POST['carryingCost']);
             $this->session->set_flashdata('carryingCost', 'Invoice Carrying Cost Support Changed');
             $this->saveHistory('Invoice Carrying Cost Support Changed');
+            redirect('admin/settings');
+        }
+		if (isset($_POST['wholesalePrice'])) {
+            $this->Home_admin_model->setValueStore('wholesalePrice', $_POST['wholesalePrice']);
+            $this->session->set_flashdata('wholesalePrice', 'Wholesale Price Enabled Successfully');
+            $this->saveHistory('Wholesale Price Enabled Successfully');
             redirect('admin/settings');
         }
         if (isset($_POST['salesReturn'])) {

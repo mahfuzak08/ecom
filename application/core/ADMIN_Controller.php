@@ -37,6 +37,7 @@ class ADMIN_Controller extends MX_Controller
         $vars['multiVendor'] = $this->Home_admin_model->getValueStore('multiVendor');
         $vars['labourCost'] = $this->Home_admin_model->getValueStore('labourCost');
         $vars['carryingCost'] = $this->Home_admin_model->getValueStore('carryingCost');
+        $vars['wholesalePrice'] = $this->Home_admin_model->getValueStore('wholesalePrice');
         $vars['multiSize'] = $this->Home_admin_model->getValueStore('multiSize');
         $vars['hasStock'] = $this->Home_admin_model->getValueStore('hasStock');
         $vars['invImgShow'] = $this->Home_admin_model->getValueStore('invImgShow');

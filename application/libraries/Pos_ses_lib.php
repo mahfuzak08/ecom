@@ -284,6 +284,7 @@ class Pos_ses_lib
 					'is_serialized' => $item_info->is_serialized,
 					'quantity' => $quantity,
 					'in_stock' => $in_stock,
+					'wholesale_price' => $item_info->wholesale_price,
 					'stock_size' => $item_info->size,
 					'price' => $price,
 					'cost_price' => $cost_price,

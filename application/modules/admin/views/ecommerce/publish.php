@@ -80,6 +80,12 @@ if ($this->session->flashdata('result_publish')) {
         <label>Price</label>
         <input type="text" name="price" placeholder="without currency at the end" value="<?= $trans_load != null && isset($trans_load[$language->abbr]['price']) ? $trans_load[$language->abbr]['price'] : '' ?>" class="form-control">
     </div>
+    <?php if($wholesalePrice == 1) { ?>
+    <div class="form-group for-shop">
+        <label>Wholesale Price</label>
+        <input type="text" name="wholesale_price" placeholder="without currency at the end" value="<?= $trans_load != null && isset($trans_load[$language->abbr]['wholesale_price']) ? $trans_load[$language->abbr]['wholesale_price'] : '' ?>" class="form-control">
+    </div>
+    <?php } ?>
     <div class="form-group for-shop">
         <label>Old Price</label>
         <input type="text" name="old_price" placeholder="without currency at the end" value="<?= $trans_load != null && isset($trans_load[$language->abbr]['old_price']) ? $trans_load[$language->abbr]['old_price'] : '' ?>" class="form-control">

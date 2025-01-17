@@ -85,6 +85,9 @@ if (!isset($_GET['settings'])) { ?>
                                     <td>
                                         <?= $item['name']; ?><?= form_hidden("item_name", $item['name']); ?>
                                         <br>In Stock: <?= $item['in_stock']; ?>
+                                        <?php if($wholesalePrice == 1){ ?>
+                                            <br>Wholesale Price: <?= $item['wholesale_price']; ?>
+                                        <?php } ?>
                                         <?php if(@$invImgShow == 1 && $item['image'] != "") { ?>
                                         <br><img src="<?= site_url("attachments/".str_replace("www.", "", $_SERVER['HTTP_HOST'])."/shop_images/".$item['image']); ?>" width="50px" height="50px">
                                         <?php } ?>
